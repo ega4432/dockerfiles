@@ -2,6 +2,10 @@ FROM python:3.9
 
 USER root
 
+COPY ./src /work
+
+WORKDIR /work
+
 RUN apt-get update
 RUN apt-get -y install locales && \
     localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
@@ -14,3 +18,5 @@ ENV TERM xterm
 RUN apt-get install -y vim less
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
+
+CMD [ "python3", "./sample.py" ]
