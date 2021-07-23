@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  api:
+    container_name: go
+    volumes:
+      - ./api:/api
+    tty: true
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    ports:
+      - 3000:3000
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    env_file:
+      - .env
