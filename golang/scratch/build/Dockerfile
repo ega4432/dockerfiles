@@ -3,9 +3,9 @@ FROM golang:1.16-alpine
 ENV CGO_ENABLED=0
 ENV GO111MODULE=on
 
-WORKDIR /go/src
+WORKDIR /go/cmd
 
-COPY ./src .
+COPY ../cmd .
 
 RUN set -eux && \
   apk update && \
