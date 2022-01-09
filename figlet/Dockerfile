@@ -1,9 +1,11 @@
-FROM alpine
-
+FROM alpine:latest
+SHELL [ "/bin/ash", "-eoux", "pipefail", "-c" ]
 LABEL MAINTAINER="ysmtegsr"
 
-RUN apk update \
-  && apk upgrade \
-  && apk add figlet
+RUN apk update && \
+  apk upgrade &&  \
+  apk add --no-cache --upgrade figlet bash
 
-CMD ["figlet", "ysmtegsr"]
+COPY docker-entrypoint.sh /usr/local/bin
+
+ENTRYPOINT [ "docker-entrypoint.sh" ]
